@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48be22ea371428742aceeb6a6c6466dd, type: 3}
+  m_Name: GameManagerData
+  m_EditorClassIdentifier: 
+  Countdown: 3
+  GameObjects:
+  - {fileID: 6841045661094399732, guid: 3d5ccadae682fc54f9aa4bc1088c28c0, type: 3}
+  - {fileID: 8018216005204489487, guid: 92daec82c497d9443b4aaf233e139f86, type: 3}
+  - {fileID: 1372750507995746671, guid: 5c37239a9cf743348aa3812f99d6b7cc, type: 3}
+  - {fileID: 2792898600468944742, guid: 88689b9ad0bfe174e8639ae246e66fa6, type: 3}

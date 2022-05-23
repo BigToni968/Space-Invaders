@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab293b197c1fa2b44999e8061371c56e, type: 3}
+  m_Name: WavesOneGame 1
+  m_EditorClassIdentifier: 
+  DistanceBetween: 4
+  Waves:
+  - {fileID: 5466171116835340421, guid: 1f411385bb953d7479f86bb1fdc78e46, type: 3}
+  - {fileID: 360448541064265308, guid: 879b8e59ee955f3498477c9c7f8b2748, type: 3}
+  ModeInstantiateWave: 0

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81eba10c924fed14badbf0b3cd104c19, type: 3}
+  m_Name: Armed
+  m_EditorClassIdentifier: 
+  Life: 4
+  Speed: 1
+  SpaceShipModel: {fileID: 2742988317529393861, guid: 4ec8eedea9f65f9498f92cdfac59871f, type: 3}
+  DeadPoints: 2
+  Acceleration: 0.1
+  DistanceForward: 1
+  DelayStep: 1
+  DefaultDirection: 4
+  StepDirection: 2
+  DelayAttack: 2
