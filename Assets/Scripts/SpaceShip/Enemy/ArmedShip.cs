@@ -11,10 +11,12 @@ public class ArmedShip : UnarmedShip
 
     private void Start()
     {
+        // Please don't use GetComponent when you can use [SerializeField]
         if (_gun != null)
             _gun = Instantiate(_gun, GetComponentsInChildren<Transform>()[1]);
     }
 
+    // Initializing -> Initialize
     public override void Initializing(SpaceShipData SpaceShipData)
     {
         base.Initializing(SpaceShipData);

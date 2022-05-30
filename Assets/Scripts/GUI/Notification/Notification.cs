@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using TMPro;
 
+// This class is not much different from NotificationBase, not sure we need to separate them
 public class Notification : NotificationBase
 {
     [SerializeField] protected Canvas _window = null;
@@ -19,6 +20,7 @@ public class Notification : NotificationBase
     protected override void Initializing()
     {
         base.Initializing();
+        // Please don't use GetComponent when it's possible to use SerializeField
         _window = _window == null ? GetComponentInChildren<Canvas>() : _window;
         _callBackButtons = _callBackButtons.Length < 2 ? GetComponentsInChildren<Button>() : _callBackButtons;
         _output = _output == null ? GetComponentInChildren<TextMeshProUGUI>() : _output;
@@ -27,6 +29,8 @@ public class Notification : NotificationBase
         AddListenerCallBackButtons();
     }
 
+    // Why do you use such a complex way to set button callbacks?
+    // I'm genuinely interested, let me know in Discord
     protected virtual void SetTextCallBackButtons()
     {
         _textCallBackButtons = new TextMeshProUGUI[CallBackButtons.Length];

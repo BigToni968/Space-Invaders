@@ -1,10 +1,13 @@
 using UnityEngine;
 using System;
 
+// SnapShot is a very confusing name for this class
+// Maybe we should have called it a "Projectile" or a "Bullet"
 public class SnapShot : SnapShotBase
 {
     [SerializeField] private float _speed = 0f;
 
+    // IsDestroy is not a grammatically correct form. For events it is better to use Destroyed, and for boolean fields IsDestroyed would work.
     public override event Action<SnapShot> IsDestroy = delegate { };
     public override float Damage { get; protected set; }
     public override float Speed { get => _speed; protected set => _speed = value; }
@@ -15,8 +18,10 @@ public class SnapShot : SnapShotBase
 
     private float _timePassed = 0;
 
+    // Please don't use GetComponent when you can use [SerializeField]
     private void Start() => SnapShotModel = GetComponent<Rigidbody2D>();
 
+    // It's usually better to use infinitive form of Verbs to name methods, such as "Initialize" in this case
     public override void Initializing(float Damage, float TimeLife, Vector2 Direction, SpaceShip Owner)
     {
         this.Damage = Damage;

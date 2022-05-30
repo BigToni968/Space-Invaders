@@ -4,6 +4,7 @@ public class UnarmedController : Controller
 {
     public event Action<UnarmedController> IsRebuild = delegate { };
 
+    // It's generally a good idea to use Nouns as field names. Using Adjectives should only be done in some specific cases like boolean fields
     private UnarmedShip _unarmed = null;
 
     private new void Awake()
@@ -23,6 +24,8 @@ public class UnarmedController : Controller
         _unarmed.IsWall -= IndependentRebuildingShip;
     }
 
+    // It's better to use Verbs as method names, for example "RebuildShip()"
+    // Also, there is no need to make a method virtual if you're not going to override it
     public virtual void IndependentRebuildingShip()
     {
         IsRebuild?.Invoke(this);

@@ -3,18 +3,23 @@ using UnityEngine;
 
 public class MotherShip : ArmedShip
 {
+    // There is no need to assign any of these default values, except for Timer
     private SpaceShipMotherData _spaceShipMotherData = null;
+    // *chamberBoundary
     private (float Left, float Right) _chamberboundary = default;
     private Camera _camera = null;
     private Timer _timer = new Timer();
+    // *maneuver
     private bool _maneuvrActivation = false;
     private bool _maneuvrSucceeded = false;
+    // did you mean canDoManeuver?
     private bool _notConditionsManeuvr = false;
 
     public override void Initializing(SpaceShipData SpaceShipData)
     {
         base.Initializing(SpaceShipData);
         _spaceShipMotherData = SpaceShipData as SpaceShipMotherData;
+        // Please never use Find
         _camera = FindObjectOfType<Camera>();
         _chamberboundary.Left = _camera.transform.position.x - _camera.Rectangle().Widht;
         _chamberboundary.Right = _camera.transform.position.x + _camera.Rectangle().Widht;
@@ -66,6 +71,7 @@ public class MotherShip : ArmedShip
             OnManeuvr();
     }
 
+    // OnManeuver
     protected virtual void OnManeuvr()
     {
         Vector2 curentPoss = SpaceShipModel.transform.position;
@@ -96,7 +102,10 @@ public class MotherShip : ArmedShip
         if (!_maneuvrActivation && _insidePlayArea)
             if (_timer.Counting(_timeDelay))
                 _maneuvrActivation = Random.Range(0, 100) <= 40;
-
+            
+        // Please read on what are "magick numbers"
+        // These values should be moved elsewhere
+        
         _notConditionsManeuvr = !_maneuvrActivation && !_maneuvrSucceeded;
     }
 }

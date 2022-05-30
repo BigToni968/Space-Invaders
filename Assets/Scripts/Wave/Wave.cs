@@ -19,12 +19,16 @@ public class Wave : WaveBase
     public override void Instantiate()
     {
         base.Instantiate();
+        
+        // This approach would work, but it will be a bit difficult for GC
+        // Please read on "Object Pool" pattern
         for (int i = 0; i < Controllers.Capacity; i++)
             Controllers.Add(Instantiate(WaveData.Controller, transform));
 
         CorrectionPositionShip();
     }
 
+    // It's better not to use Nouns as names for methods. Verbs work better, e.g. CorrectShipPosition()
     public virtual void CorrectionPositionShip()
     {
         float positionCenterCamera = Camera.main.transform.position.x - Camera.main.Rectangle().Widht;
@@ -49,9 +53,10 @@ public class Wave : WaveBase
         Controllers.Clear();
     }
 
+    // It's better to use Verbs for method names, e.g. CheckWaveCleared
     protected virtual void CalculatingShipDestroy(SpaceShip SpaceShip)
     {
-        int sumDestroydShip = 0;
+        int sumDestroydShip = 0; // destroyed
         foreach (Controller controller in Controllers)
             if (controller.SpaceShip == null) sumDestroydShip++;
 

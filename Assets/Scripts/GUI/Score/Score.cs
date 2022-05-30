@@ -8,6 +8,7 @@ public class Score : GUIElement
     private float _life { get; set; }
     private float _score { get; set; }
 
+    // Please don't use GetComponent when it's possible to use SerializeField
     private void Awake() => _outputScore = GetComponentInChildren<TextMeshProUGUI>();
 
     public void ResetValue()
@@ -18,6 +19,7 @@ public class Score : GUIElement
 
     public void ResetValue(ScoreValue Variable, float Value)
     {
+        // why not Variable == ScoreValue.Life o_0
         if (Variable.Equals(ScoreValue.Life)) _life = Value;
         if (Variable.Equals(ScoreValue.Score)) _score = Value;
         OuputScore();
@@ -27,6 +29,7 @@ public class Score : GUIElement
 
     public void Add(ScoreValue Variable, float Value)
     {
+        // why not Variable == ScoreValue.Life o_0
         if (Variable.Equals(ScoreValue.Life)) _life += Value;
         if (Variable.Equals(ScoreValue.Score)) _score += Value;
         if (_life < 0) _life = 0;

@@ -14,6 +14,7 @@ public class GUI : MonoBehaviour
     private void Awake()
     {
         _gUIElements = InstantiateNotification();
+        // Please don't use GetComponent when it's possible to use [SerializeField]
         Score = GetComponentInChildren<Score>();
         AppearingText = GetComponentInChildren<AppearingText>();
     }
@@ -21,6 +22,9 @@ public class GUI : MonoBehaviour
     {
         List<GUIElement> notifications = new List<GUIElement>(_gUIData.GUIElements.Length);
 
+        // There is no need to use byte for i, because when you call _gUIData.GUIElements[i]
+        // i will be cast to int anyway, so it's actually slower than just using int
+        
         for (byte i = 0; i < notifications.Capacity; i++)
             notifications.Add(Instantiate(_gUIData.GUIElements[i], transform));
 
@@ -52,6 +56,18 @@ public class GUI : MonoBehaviour
 
     private Notification FindTypeNotification<U>()
     {
+        // It would have been better to declare guiElements as dictionary
+        // private Dictionary<Type, GUIElement> _gUIElements
+        //
+        // and add elements like so:
+        // _gUIElements.Add(element.GetType, element)
+        //
+        // and extract elements like so:
+        // return _gUIEements[typeof(U)];
+        //
+        // This would have given us O(1) complexity instead of O(n) as in your implementation
+        
+        
         for (byte i = 0; i < _gUIElements.Count; i++)
             if (_gUIElements[i] is U) return _gUIElements[i] as Notification;
 

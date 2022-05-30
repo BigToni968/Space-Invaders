@@ -7,11 +7,14 @@ using TMPro;
 public class Countdown : GUIElement
 {
     [SerializeField] private TextMeshProUGUI _outputCountdown = null;
+    
+    // Using Nouns is generally not recommended for names of events. Consider using Verbs in past simple, like "CountdownEnded"
     public Action CountdownEnd = delegate { };
 
     private Canvas _countdownWindow = null;
     private void Awake()
     {
+        // Please don't use GetComponent when it's possible to use SerializeField
         _countdownWindow = GetComponent<Canvas>();
         if (_outputCountdown == null)
             _outputCountdown = GetComponentInChildren<TextMeshProUGUI>();
@@ -22,6 +25,8 @@ public class Countdown : GUIElement
         StartCoroutine(Performed(Countdown));
     }
 
+    // Using Verbs in past tense is generally not recommended
+    // Consider using RunTimer instead
     private IEnumerator Performed(int Countdown)
     {
         for (int i = Countdown; i > 0; i--)

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+// SnapShotBase seems to be not different from SnapShot, not sure we need to split these two classes
 public abstract class SnapShotBase : MonoBehaviour
 {
     public abstract event Action<SnapShot> IsDestroy;

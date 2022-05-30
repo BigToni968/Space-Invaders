@@ -4,6 +4,7 @@ using System;
 
 public class UnarmedShip : SpaceShip
 {
+    // you never override this event so no need to make it virtual
     public virtual event Action IsWall = delegate { };
 
     public bool IsRebuild { get; protected set; }
@@ -17,11 +18,12 @@ public class UnarmedShip : SpaceShip
 
     private void Start() => IsRebuild = false;
 
+    // Initializing -> Initialize
     public override void Initializing(SpaceShipData SpaceShipData)
     {
         base.Initializing(SpaceShipData);
         _spaceShipUnarmedData = SpaceShipData as SpaceShipUnarmedData;
-        _gameManager = FindObjectOfType<GameManager>();
+        _gameManager = FindObjectOfType<GameManager>(); // Please never use Find
 
         _direction = GetDirection.GetVector(_spaceShipUnarmedData.DefaultDirection);
         _distance = _spaceShipUnarmedData.DistanceForward;
@@ -29,6 +31,7 @@ public class UnarmedShip : SpaceShip
         _acceleration = _spaceShipUnarmedData.Acceleration;
     }
 
+    // These two methods should not be public, because that would violate encapsulation
     public override void SubscribeShipEvents()
     {
         base.SubscribeShipEvents();
@@ -47,6 +50,8 @@ public class UnarmedShip : SpaceShip
 
     public override void OnUpdate() => OnMove(_direction);
 
+    // Using infinitive Verb form seems like not a good idea here
+    // Consider using names like OnColliderEntered or ProcessCollision
     protected virtual void EnretCollider(Collider2D collider)
     {
         if (collider.tag.Equals("SnapShot"))
@@ -77,11 +82,15 @@ public class UnarmedShip : SpaceShip
         }
     }
 
+    // I added some empty lines for better readability
     public virtual IEnumerator Rebuild()
     {
         IsRebuild = true;
         Vector2 Direction = Vector2.zero;
-        if (SpaceShipModel != null) SpaceShipModel.velocity = Direction;
+        
+        if (SpaceShipModel != null) 
+            SpaceShipModel.velocity = Direction;
+        
         Vector2 newPossition = SpaceShipModel.transform.position;
         Direction = GetDirection.GetVector(_spaceShipUnarmedData.StepDirection) * _distance;
         newPossition += Direction;

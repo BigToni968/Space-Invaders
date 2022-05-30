@@ -10,6 +10,7 @@ public class Menu : GUIElement
     {
         _menuButtons = _menuButtons.Length == 0 ? GetComponentsInChildren<Button>() : _menuButtons;
         AddListenerMenuButtons();
+        // Please never use Find
         _gUI = FindObjectOfType<GUI>();
     }
 
@@ -21,6 +22,8 @@ public class Menu : GUIElement
 
     private void OnClickListener(Button MenuButton)
     {
+        // Using object names like this is not reliable.
+        // Consider doing this the simple way and just assigning method calls to button's OnClick events in Unity Editor Inspector
         switch (MenuButton.name.ToLower().Trim())
         {
             case "play":
@@ -37,6 +40,7 @@ public class Menu : GUIElement
         }
     }
 
+    // Using gerund form for method names is generally not a good idea. Consider using infinitive like CheckResult
     private void ChekingResult(ResultNotification result)
     {
         if (result == ResultNotification.Ok)

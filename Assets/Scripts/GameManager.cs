@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameManagerData _gameManagerData = null;
 
+    // Why use "protected" access modifier when this class has no inheritors?
+    // this should have been "private"
     public GUI GUI { get; protected set; }
     public PlayerController PlayerController { get; protected set; }
     public WaveManager WaveManager { get; protected set; }
@@ -50,6 +52,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        // This seems a bit overengineered. Since there is only one type of GameManager,
+        // we could have saved all prefabs into it's fields with [SerializeField] and then instantiated them.
         for (int i = 0; i < _gameManagerData.GameObjects.Length; i++)
             Instantiate(_gameManagerData.GameObjects[i], transform);
     }

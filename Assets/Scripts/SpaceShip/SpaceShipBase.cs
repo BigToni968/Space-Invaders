@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+// Not sure we need to split SpaceShipBase and SpaceShip, they seem quite similar
 public abstract class SpaceShipBase : MonoBehaviour
 {
     public abstract event Action<SpaceShip> IsDead;

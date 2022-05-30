@@ -4,6 +4,7 @@ public class GunTwo : Gun
 {
     [SerializeField] private Transform[] _snapShotStartPoss = null;
 
+    // Check notes to GunOne
     public override void OnAttack(SpaceShip Owner, Vector2 Direction)
     {
         if (_snapShotStartPoss != null)

@@ -3,16 +3,21 @@ using System;
 
 public class SpaceShip : SpaceShipBase
 {
+    // No need to assign default value to an event
+    // IsDead seems like a name of a boolean field. Maybe Died or Killed would have been a better name
     public override event Action<SpaceShip> IsDead = delegate { };
     public override float Life { get; protected set; }
     public override float Speed { get; protected set; }
     protected override Rigidbody2D SpaceShipModel { get; set; }
     protected override SpaceShipBody SpaceShipBody { get; set; }
 
+    // Initializing -> Initialize
     public virtual void Initializing(SpaceShipData SpaceShipData)
     {
         Life = SpaceShipData.Life;
         Speed = SpaceShipData.Speed;
+        
+        // Please don't use GetComponent when it's possible to use [SerializeField]
         SpaceShipModel = GetComponentInChildren<Rigidbody2D>();
         SpaceShipBody = SpaceShipModel.GetComponent<SpaceShipBody>();
     }
